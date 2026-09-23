@@ -552,6 +552,19 @@ document.querySelectorAll('[data-wa]').forEach(a => {
   a.href = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg);
 });
 
+/* Google Ads - conversao no clique do WhatsApp (AW-18460617457) */
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a[href*="wa.me"]');
+  if (link && typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18460617457/VS0fCKHM84IdEPHV2uJE',
+      'value': 1.0,
+      'currency': 'BRL',
+      'transport_type': 'beacon'
+    });
+  }
+});
+
 /* Ano do rodapé */
 document.getElementById('ano').textContent = new Date().getFullYear();
 
